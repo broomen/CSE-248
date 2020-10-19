@@ -1,0 +1,57 @@
+package history_model;
+
+import java.io.IOException;
+
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
+import util.Evaluator;
+
+public class HistoryLinkedListStore {
+	private LinkedList<History> theList;
+	private Iterator listIter;
+
+	public HistoryLinkedListStore() {
+		theList = new LinkedList<>();
+		listIter = theList.listIterator(0);
+	}
+
+	public void add(History history) {
+		theList.add(history);
+	}
+
+	public void addAll(LinkedList<History> historyCollection) {
+		theList.addAll(historyCollection);
+	}
+
+	public boolean remove(History history) {
+		return theList.remove(history);
+	}
+
+	public History findByName(String name) {
+		return theList.stream().filter(history -> name.equals(history.getTrailName())).findAny().orElse(null);
+	}
+
+	public List<History> find(Predicate<History> predicate) {
+		long start = System.currentTimeMillis();
+		List<History> newList = theList.stream().filter(predicate).collect(Collectors.toList());
+		long end = System.currentTimeMillis();
+		long timeTook = end - start;
+		Evaluator.addHistoryResult((int) timeTook);
+		try {
+			Evaluator.evalFind("historyLinkedList");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return newList;
+	}
+
+	public void display() {
+		theList.stream().forEach(System.out::println);
+	}
+
+}

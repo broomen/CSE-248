@@ -1,0 +1,26 @@
+In advance, sorry for a crowded Demo method. Typically I keep it small and cute, I was just
+saving that for when we go to the next stage. 
+
+I was able to gather a lot of information regarding the various data structures I used.
+I did not time removal, as I figured it seemed redundant as long as I tested insertion and then finding.
+If I can find the value fast, I can remove just as fast. 
+
+It seems for the trails, the TreeSet is slightly more efficient in speed for insert and finding compared to the TreeMap.
+This could be an error from how I setup the TreeMap for the trails, but I couldn't figure it out. Regardless, one major benefit
+to the TreeMap is that I can have trails with duplicate names so long as their ID numbers are different, since I'm sure there's
+trails in the world named the same, just in different locations. Both were extremely efficient, with Big O of log(n).
+
+For the users, weirdly enough the TreeMap overtook the TreeSet. Again, the difference was miniscule, so it could've been just an error
+in how I wrote them out made one slightly less efficient. I really like the TreeMaps for the user's though, as it will ensure
+every username is unique, much like real world applications. The big O was at least log(n) for the insert and find.
+
+Lastly, I only tested one data structure for the hiking history, as it seems a really good fit with benefits over others similar
+to it. I decided on a Linked List, as I can maintain the order it's entered in, and let's say a hiker wants to remove or search
+the List for a hike in specific, they would have that option. Compared to a queue or stack which also preserve order but
+are much more difficult to traverse and remove from, this just seems more advantageous and suitable for the user's needs. 
+Searching can be slow, at O(n), which isn't the best, but insertion and deletion come in at O(1).
+
+Also, I decided against using any hash data structures, as the project outline stated that we needed to choose a data structure
+that didn't require size declaration. TreeMap and TreeSet, as well as LinkedList all accomplish this in their respective uses
+that I applied them to. With all of these structures and comparators, a user can search through the different trails or their hiking history 
+in a multitude of ways. I feel confident with these data structures. 

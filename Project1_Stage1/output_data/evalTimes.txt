@@ -1,0 +1,10 @@
+24 milliseconds for a trail TreeSet Insert.
+4 milliseconds for a trail TreeSet Find.
+33 milliseconds for a trail TreeMap Insert.
+5 milliseconds for a trail TreeMap Find.
+66 milliseconds for a user TreeSet Insert.
+11 milliseconds for a user TreeSet Find.
+40 milliseconds for a user TreeMap Insert.
+1 milliseconds for a user TreeMap Find.
+13 milliseconds for a history LinkedList Insert.
+4 milliseconds for a history LinkedList Find.
