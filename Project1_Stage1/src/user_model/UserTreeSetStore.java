@@ -17,6 +17,10 @@ public class UserTreeSetStore {
 		theSet = new TreeSet<>();
 	}
 
+	public int size() {
+		return theSet.size();
+	}
+	
 	public void add(User user) {
 		theSet.add(user);
 	}
@@ -34,16 +38,7 @@ public class UserTreeSetStore {
 	}
 
 	public Set find(Predicate<User> predicate) {
-		long start = System.currentTimeMillis();
 		Set newSet = theSet.stream().filter(t-> predicate.test(t)).collect(Collectors.toSet());
-		long end = System.currentTimeMillis();
-		long timeTook = end - start;
-		Evaluator.addUserResult((int)timeTook);
-		try {
-			Evaluator.evalFind("userTreeSet");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		return newSet;
 	}
 

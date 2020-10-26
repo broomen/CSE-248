@@ -17,6 +17,10 @@ public class TrailTreeMapStore {
 		theMap = new TreeMap<String, Trail>();
 	}
 	
+	public int size() {
+		return theMap.size();
+	}
+	
 	public void add(Trail trail) {
 		theMap.put(trail.getId(), trail);
 	}
@@ -34,16 +38,7 @@ public class TrailTreeMapStore {
 	}
 	
 	public Map find(Predicate<Trail> predicate) {
-		long start = System.currentTimeMillis();
 		Map newMap = theMap.values().stream().filter(t-> predicate.test(t)).collect(Collectors.toMap(Trail::getId, Trail::getName));
-		long end = System.currentTimeMillis();
-		long timeTook = end - start;
-		Evaluator.addTrailResult((int)timeTook);
-		try {
-			Evaluator.evalFind("trailTreeMap");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		return newMap;
 	}
 	

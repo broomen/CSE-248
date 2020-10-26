@@ -19,6 +19,10 @@ public class HistoryLinkedListStore {
 		theList = new LinkedList<>();
 		listIter = theList.listIterator(0);
 	}
+	
+	public int size() {
+		return theList.size();
+	}
 
 	public void add(History history) {
 		theList.add(history);
@@ -37,16 +41,7 @@ public class HistoryLinkedListStore {
 	}
 
 	public List<History> find(Predicate<History> predicate) {
-		long start = System.currentTimeMillis();
 		List<History> newList = theList.stream().filter(predicate).collect(Collectors.toList());
-		long end = System.currentTimeMillis();
-		long timeTook = end - start;
-		Evaluator.addHistoryResult((int) timeTook);
-		try {
-			Evaluator.evalFind("historyLinkedList");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		return newList;
 	}
 

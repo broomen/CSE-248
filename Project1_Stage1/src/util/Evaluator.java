@@ -4,7 +4,18 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.Random;
 import java.util.Scanner;
+import java.util.function.Predicate;
+
+import history_model.History;
+import history_model.HistoryLinkedListStore;
+import trail_model.Trail;
+import trail_model.TrailTreeMapStore;
+import trail_model.TrailTreeSetStore;
+import user_model.User;
+import user_model.UserTreeMapStore;
+import user_model.UserTreeSetStore;
 
 public class Evaluator {
 	public static LinkedList<Integer> trailResults = new LinkedList<>();
@@ -136,5 +147,98 @@ public class Evaluator {
 			break;
 		}
 	}
+
+	public static void evalTrailSetFind(TrailTreeSetStore trailSetStore) {
+		int randomNum = 0;
+		long start = System.currentTimeMillis();
+		for(int i = 0; i < (trailSetStore.size()/10); i++) {
+			String randomNumber = String.valueOf(new Random().nextInt(100));
+			Predicate<Trail> pTrail = e -> e.getId().startsWith(randomNumber);
+			trailSetStore.find(pTrail);
+		}
+		long end = System.currentTimeMillis();
+		long timeTook = end - start;
+		addTrailResult((int)timeTook);
+		try {
+			evalFind("trailTreeSet");
+		} catch (IOException e) {
+			System.out.println("file not found");;
+		}
+	}
+	
+	public static void evalTrailMapFind(TrailTreeMapStore trailMapStore) {
+		int randomNum = 0;
+		long start = System.currentTimeMillis();
+		for(int i = 0; i < (trailMapStore.size()/10); i++) {
+			String randomNumber = String.valueOf(new Random().nextInt(100));
+			Predicate<Trail> pTrail = e -> e.getId().startsWith(randomNumber);
+			trailMapStore.find(pTrail);
+		}
+		long end = System.currentTimeMillis();
+		long timeTook = end - start;
+		addTrailResult((int)timeTook);
+		try {
+			evalFind("trailTreeMap");
+		} catch (IOException e) {
+			System.out.println("file not found");;
+		}
+	}
+	
+	public static void evalUserSetFind(UserTreeSetStore userSetStore) {
+		int randomLetter = 0;
+		long start = System.currentTimeMillis();
+		for(int i = 0; i < (userSetStore.size()/10); i++) {
+			randomLetter = new Random().nextInt(26);
+			char charValue = (char) (randomLetter + 97);
+			Predicate<User> pUser = e -> e.getPassword().startsWith(String.valueOf(charValue));
+			userSetStore.find(pUser);
+		}
+		long end = System.currentTimeMillis();
+		long timeTook = end - start;
+		addUserResult((int)timeTook);
+		try {
+			evalFind("userTreeSet");
+		} catch (IOException e) {
+			System.out.println("file not found");;
+		}
+	}
+	
+	public static void evalUserMapFind(UserTreeMapStore userMapStore) {
+		int randomLetter = 0;
+		long start = System.currentTimeMillis();
+		for(int i = 0; i < (userMapStore.size()/10); i++) {
+			randomLetter = new Random().nextInt(26);
+			char charValue = (char) (randomLetter + 97);
+			Predicate<User> pUser = e -> e.getPassword().startsWith(String.valueOf(charValue));
+			userMapStore.find(pUser);
+		}
+		long end = System.currentTimeMillis();
+		long timeTook = end - start;
+		addUserResult((int)timeTook);
+		try {
+			evalFind("userTreeMap");
+		} catch (IOException e) {
+			System.out.println("file not found");;
+		}
+	}
+	
+	public static void evalHistoryFind(HistoryLinkedListStore historyListStore) {
+		int randomNum = 0;
+		long start = System.currentTimeMillis();
+		for(int i = 0; i < (historyListStore.size()/10); i++) {
+			String randomNumber = String.valueOf(new Random().nextInt(100));
+			Predicate<History> pTrail = e -> e.getTrailName().startsWith("HIS" + randomNumber);
+			historyListStore.find(pTrail);
+		}
+		long end = System.currentTimeMillis();
+		long timeTook = end - start;
+		addHistoryResult((int)timeTook);
+		try {
+			evalFind("historyLinkedList");
+		} catch (IOException e) {
+			System.out.println("file not found");;
+		}
+	}
+
 
 }

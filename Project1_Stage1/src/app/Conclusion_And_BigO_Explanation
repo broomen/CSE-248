@@ -1,26 +1,31 @@
-In advance, sorry for a crowded Demo method. Typically I keep it small and cute, I was just
-saving that for when we go to the next stage. 
+For the purpose of testing the various data structures and their efficiency, I used System.time before and after a function.
+I tested exclusively the insertion and finding functions, as I felt deletion was a little redundant since finding accomplishes that already,
+just without the actual removal. To test the find function, I divided the total storage structure size by 10 and searched for random variables
+that many times. For example, most of these structures were 50,000 in size, so I searched 5,000 times for 5,000 different random variables. 
+I recorded the time prior to the first search and stopped it after the end of the last search to get my measurement. 
 
-I was able to gather a lot of information regarding the various data structures I used.
-I did not time removal, as I figured it seemed redundant as long as I tested insertion and then finding.
-If I can find the value fast, I can remove just as fast. 
+For the trails, I narrowed down the data structure to use for storage between a TreeSet and a TreeMap. I decided against anything Hash,
+such as a HashTable, because I wanted the size to be dynamic and avoid having to declare it prior. Others, such as a queue, linked list, etc.
+just make no sense to me and are wildly inefficient for this. As for the data finds, I found that when inserting 50,000 objects, the TreeSet
+was slightly faster than the TreeMap, but it was a very miniscule difference. The larger difference was with my find method, with TreeSet
+winning out vastly compared to TreeMap. Perhaps it's the nature of the Trail class, or maybe how I wrote the methods, but regardless
+finding with the TreeSet was extremely fast compared to the TreeMap for trails, making TreeSet my go to choice.
 
-It seems for the trails, the TreeSet is slightly more efficient in speed for insert and finding compared to the TreeMap.
-This could be an error from how I setup the TreeMap for the trails, but I couldn't figure it out. Regardless, one major benefit
-to the TreeMap is that I can have trails with duplicate names so long as their ID numbers are different, since I'm sure there's
-trails in the world named the same, just in different locations. Both were extremely efficient, with Big O of log(n).
+For the users, I again narrowed down between a TreeSet and TreeMap for storage. I decided upon this for exactly the same reasons as I did
+the trail. Again, for insertion both data structures were neck and neck with 50,000 objects, with treeMap interestingly enough winning out 
+slightly this time. Conversely though, the find times were basically reversed from the trail tests, with user being vastly more efficient
+in finding in a TreeMap. Perhaps it's how the classes are different, but the searching methods were essentially the same, barring some
+variable changes, but TreeMap seems the best for user.  
 
-For the users, weirdly enough the TreeMap overtook the TreeSet. Again, the difference was miniscule, so it could've been just an error
-in how I wrote them out made one slightly less efficient. I really like the TreeMaps for the user's though, as it will ensure
-every username is unique, much like real world applications. The big O was at least log(n) for the insert and find.
+For the Hiking History, there is only one obvious choice to me, so I tested a linkedList. I didn't compare it to other data structures,
+as I feel this is genuinely the only option that works for the requirements of the projects. It's dynamic in size, maintains insertion order,
+has the ability to insert, find, and delete, and is efficient. While queues and stacks could possibly get the job done, they're much less
+suitable for all the extra things a LinkedList can do and are lacking. I tested insertion and finding again, both seemed reasonable. 
 
-Lastly, I only tested one data structure for the hiking history, as it seems a really good fit with benefits over others similar
-to it. I decided on a Linked List, as I can maintain the order it's entered in, and let's say a hiker wants to remove or search
-the List for a hike in specific, they would have that option. Compared to a queue or stack which also preserve order but
-are much more difficult to traverse and remove from, this just seems more advantageous and suitable for the user's needs. 
-Searching can be slow, at O(n), which isn't the best, but insertion and deletion come in at O(1).
+Ultimately, I plan on going with a TreeSet for my Trail storage, a TreeMap for my user Storage, and a LinkedList for my Hiking History.
+The TreeSet doesn't allow duplicates, but there never should be as all trails are unique. The TreeMap is good as it bounds a key to the value,
+which could be useful when setting up usernames and passwords. The LinkedList will maintain the order and allow things to be added or removed
+in specific spots from the user's history. For the TreeSet and TreeMap, their efficiency is Big O(log n) for both finding and insertion,
+which is very good. For the LinkedList, insertion and deletion are Big O(1), but finding is unfortunately big O(n). Not the best, but 
+it still is the best fit.
 
-Also, I decided against using any hash data structures, as the project outline stated that we needed to choose a data structure
-that didn't require size declaration. TreeMap and TreeSet, as well as LinkedList all accomplish this in their respective uses
-that I applied them to. With all of these structures and comparators, a user can search through the different trails or their hiking history 
-in a multitude of ways. I feel confident with these data structures. 

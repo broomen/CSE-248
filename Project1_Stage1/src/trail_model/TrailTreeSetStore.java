@@ -15,6 +15,10 @@ public class TrailTreeSetStore {
 	public TrailTreeSetStore() {
 		theSet = new TreeSet<>();
 	}
+	
+	public int size() {
+		return theSet.size();
+	}
 
 	public void add(Trail trail) {
 		theSet.add(trail);
@@ -33,16 +37,7 @@ public class TrailTreeSetStore {
 	}
 
 	public Set find(Predicate<Trail> predicate) {
-		long start = System.currentTimeMillis();
 		Set newSet = theSet.stream().filter(t-> predicate.test(t)).collect(Collectors.toSet());
-		long end = System.currentTimeMillis();
-		long timeTook = end - start;
-		Evaluator.addTrailResult((int)timeTook);
-		try {
-			Evaluator.evalFind("trailTreeSet");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		return newSet;
 	}
 

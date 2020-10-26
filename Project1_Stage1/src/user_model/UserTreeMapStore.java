@@ -16,6 +16,10 @@ private static TreeMap<String, User> theMap;
 		theMap = new TreeMap<String, User>();
 	}
 	
+	public int size() {
+		return theMap.size();
+	}
+	
 	public void add(User user) {
 		theMap.put(user.getUsername(), user);
 	}
@@ -33,16 +37,7 @@ private static TreeMap<String, User> theMap;
 	}
 	
 	public Map find(Predicate<User> predicate) {
-		long start = System.currentTimeMillis();
 		Map newMap = theMap.values().stream().filter(t-> predicate.test(t)).collect(Collectors.toMap(User::getUsername, User::getPassword));
-		long end = System.currentTimeMillis();
-		long timeTook = end - start;
-		Evaluator.addUserResult((int)timeTook);
-		try {
-			Evaluator.evalFind("userTreeMap");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		return newMap;
 	}
 	

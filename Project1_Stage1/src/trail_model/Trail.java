@@ -26,6 +26,10 @@ public class Trail implements Comparable<Trail> {
 
 	public void setId(String id) {
 		this.id = id;
+	}	
+
+	public static int getIdCounter() {
+		return idCounter;
 	}
 
 	@Override
