@@ -1,1 +1,2 @@
 10/26 Revised the evaluator methods, added in multiple tests to conduct it over (n/10) times.
+11/1  Added UML Diagrams for Use Case and Class.
