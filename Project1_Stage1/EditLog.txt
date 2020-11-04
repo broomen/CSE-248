@@ -1,2 +1,3 @@
 10/26 Revised the evaluator methods, added in multiple tests to conduct it over (n/10) times.
 11/1  Added UML Diagrams for Use Case and Class.
+11/4  Added a separate folder for the UML diagrams per the instructions on blackboard and put both pdfs inside.
