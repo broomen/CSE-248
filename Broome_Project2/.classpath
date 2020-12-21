@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="E:/Users/Brick/Documents/homework/CSE/CSE 248/Broome_Project2/sqlite-jdbc-3.32.3.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
